@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="utf-8" />
+        <title>BIP39 - Mnemonic Code</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/app.css">
+        <meta content="Mnemonic code for generating deterministic keys" name="description"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="bitcoin mnemonic converter" name="description" />
+        <meta content="Ian Coleman" name="author" />
+        <link type="image/x-icon" rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
+    </head>
+    <body>
+        <div class="container">
+
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Mnemonic</h2>
+                    <form class="form-horizontal" role="form">
+                       
+                      
+                     
+
+
+                  
+                        
+                        
+                        <div class="form-group">
+                            <label for="phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <div class="col-sm-10">
+                                <textarea id="phrase" class="phrase private-data form-control" data-show-qr autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                            </div>
+                        </div>
+                        
+                      
+
+                        <div class="form-group">
+                            <label for="network-phrase" class="col-sm-2 control-label">Coin</label>
+                            <div class="col-sm-10">
+                                <select id="network-phrase" class="network form-control">
+                                    <option value="68" selected>ETH - Ethereum</option>
+                                    <!-- populated by javascript -->
+
+
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                   
+                    <ul class="derivation-type nav nav-tabs" role="tablist">
+                       
+                        <li id="bip44-tab" class="active">
+                            <a href="#bip44" role="tab" data-toggle="tab">BIP44</a>
+                        </li>
+                     
+                    </ul>
+                    <div class="derivation-type tab-content">
+                        <div id="bip44" class="tab-pane active">
+                            <form class="form-horizontal" role="form">
+                               
+                                <div class="form-group">
+                                   
+                                    <div class="col-sm-10">
+                                        <input id="coin-bip44" type="text" class="coin form-control" value="0" readonly>
+                                    </div>
+                                </div>
+                              
+                               
+                               
+                               
+                              
+                               
+                                <div class="form-group">
+                                    <label for="bip44-path" class="col-sm-2 control-label">BIP32 Derivation Path</label>
+                                    <div class="col-sm-10">
+                                        <input id="bip44-path" type="text" class="path form-control" value="m/44'/0'/0'/0" readonly="readonly">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                   
+                    </div>
+                    
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                
+                <ul class="addresses-type nav nav-tabs" role="tablist">
+                    <li id="table-tab" class="active">
+                        <a href="#table" role="tab" data-toggle="tab">Table</a>
+                    </li>
+                    <li id="csv-tab">
+                        <a href="#csv" role="tab" data-toggle="tab">CSV</a>
+                    </li>
+                </ul>
+                <div class="addresses-type tab-content">
+                    <div id="table" class="tab-pane active">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>
+                                        <div class="input-group">
+                                            <span>Path</span>&nbsp;&nbsp;
+                                            <button class="index-toggle">Toggle</button>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="input-group">
+                                            <span>Address</span>&nbsp;&nbsp;
+                                            <button class="address-toggle">Toggle</button>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="input-group">
+                                            <span>Public Key</span>&nbsp;&nbsp;
+                                            <button class="public-key-toggle">Toggle</button>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="input-group">
+                                            <span>Private Key</span>&nbsp;&nbsp;
+                                            <button class="private-key-toggle">Toggle</button>
+                                        </div>
+                                    </th>
+                                </thead>
+                                <tbody class="addresses monospace">
+                                    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="csv" class="tab-pane">
+                        <div class="col-md-12">
+                            <textarea class="csv form-control" rows="25" readonly autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="number" class="rows-to-add" value="5">
+
+          
+
+          
+            <hr>
+
+      
+        </div>
+
+
+        <script type="text/template" id="address-row-template">
+            <tr>
+                <td class="index"><span></span></td>
+                <td class="address"><span data-show-qr></span></td>
+                <td class="pubkey"><span data-show-qr></span></td>
+                <td class="privkey private-data"><span data-show-qr></span></td>
+            </tr>
+        </script>
+        <script src="js/jquery-3.2.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/bip39-libs.js"></script>
+        <script src="js/bitcoinjs-extensions.js"></script>
+        <script src="js/segwit-parameters.js"></script>
+        <script src="js/ripple-util.js"></script>
+        <script src="js/jingtum-util.js"></script>
+        <script src="js/casinocoin-util.js"></script>
+        <script src="js/cosmos-util.js"></script>
+        <script src="js/eos-util.js"></script>
+        <script src="js/fio-util.js"></script>
+        <script src="js/xwc-util.js"></script>
+        <script src="js/sjcl-bip39.js"></script>
+        <script src="js/wordlist_english.js"></script>
+        <script src="js/wordlist_japanese.js"></script>
+        <script src="js/wordlist_spanish.js"></script>
+        <script src="js/wordlist_chinese_simplified.js"></script>
+        <script src="js/wordlist_chinese_traditional.js"></script>
+        <script src="js/wordlist_french.js"></script>
+        <script src="js/wordlist_italian.js"></script>
+        <script src="js/wordlist_korean.js"></script>
+        <script src="js/wordlist_czech.js"></script>
+        <script src="js/wordlist_portuguese.js"></script>
+        <script src="js/jsbip39.js"></script>
+        <script src="js/entropy.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/web3.min.js"></script>
+    </body>
+</html>
